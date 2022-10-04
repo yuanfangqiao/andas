@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  netty:
+    connection-timeout: 10000
+    idle-timeout: 10000
+    max-keep-alive-requests: 2000
+
+  reactive:
+    session:
+      timeout: 10
+
+#
+#logging:
+#  level:
+#    root: trace
+
+spring:
+  web:
+    resources:
+      static-locations: classpath:/o1/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/

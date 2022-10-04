@@ -1,0 +1,1 @@
+go build -o ./build/camera src/main.go

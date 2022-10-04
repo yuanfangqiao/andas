@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>CANVAS VIDEO</title>
+    <style>
+        #Video {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+<canvas id="video" width="640" height="480"></canvas>
+<pre id="FrameRate"></pre>
+<pre id="Msg"></pre>
+<button width="100" height="60" onclick="openBtn()">open</button>
+<button width="100" height="60" onclick="closeBtn()">close</button>
+<button width="100" height="60" onclick="ledOn()">ledOn</button>
+<button width="100" height="60" onclick="ledOff()">ledOff</button>
+
+
+<script>
+    var webSocket;
+    //定义服务器地址
+    var wsURL = "ws://" + document.location.host + "/camera/client/ws";
+    var canvas = document.getElementById('video');
+    var ctx = canvas.getContext('2d');
+
+    function openBtn() {
+        if (webSocket) {
+            webSocket.send("OpenCamera");
+        }
+    }
+
+    function closeBtn() {
+        if (webSocket) {
+            webSocket.send("CloseCamera");
+        }
+    }
+
+    function ledOn() {
+        if (webSocket) {
+            webSocket.send("LedOn");
+        }
+    }
+    function ledOff() {
+        if (webSocket) {
+            webSocket.send("LedOff");
+        }
+    }
+
+
+
+    var frameCount = 0;
+    window.setInterval(function () {
+        fps = frameCount;
+        frameCount = 0;
+        var FrameRate = document.getElementById('FrameRate');
+        FrameRate.innerHTML = "当前帧率: " + fps + " fps";
+    }, 1000)
+
+    function Msg(...args) {
+        msg = args.join('');
+        console.log(msg);
+
+        var Msg = document.getElementById('Msg');
+        contents = Msg.innerHTML;
+        contents += msg;
+        slice = contents.split('\n').slice(-5);
+        msg = slice.join('\n') + '\n';
+        Msg.innerHTML = msg;
+    }
+
+    function initWebsocket() {
+        webSocket = new WebSocket(wsURL);
+        webSocket.SendCmd = function (req) {
+            req = JSON.stringify(req);
+            webSocket.send(req);
+        }
+
+        webSocket.onopen = function () {
+            Msg("websocket opened");
+        };
+
+        webSocket.onerror = function (event) {
+            Msg("websocket error: " + event);
+        };
+
+        webSocket.onclose = function (event) {
+            Msg("websocket closed with code: " + event.code + " reason: " + event.reason);
+        };
+
+        webSocket.onmessage = function (event) {
+            imageData = event.data;
+            frameCount++;
+            //Msg("frame data len: ", imageData.size);
+            var image = new Image();
+            image.src = URL.createObjectURL(imageData);
+            image.onload = () => {
+                URL.revokeObjectURL(image.src);
+                ctx.save();
+                // ctx.translate(120, 180);
+                // ctx.rotate(90 * (Math.PI / 180));
+                // ctx.translate(-180, -120);
+                ctx.drawImage(image, 0, 0);
+                ctx.restore();
+            }
+        };
+    }
+    initWebsocket();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+2022-10-01 22:52:20,992 INFO o.s.b.StartupInfoLogger [main] Starting JuliApplication on Vitcou-MBP.lan with PID 43392 (/Users/vitcou/esp2/demo/andas/server/juli/target/classes started by vitcou in /Users/vitcou/esp2/demo/andas/server/juli)
+2022-10-01 22:52:20,994 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-10-01 22:52:21,589 INFO o.s.b.w.e.n.NettyWebServer [main] Netty started on port(s): 7080
+2022-10-01 22:52:21,595 INFO o.s.b.StartupInfoLogger [main] Started JuliApplication in 0.926 seconds (JVM running for 1.513)
