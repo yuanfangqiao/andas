@@ -4,10 +4,11 @@
  * @Description: 
 -->
 ### 介绍
-Andas 项目设备 ESP-CAM
+Andas 项目设备 ESP32-CAM
 
 ### 设备需要
 ESP32-CAM
+![ESP32-CAM](./doc/ESP32-CAM.png)
 
 ### 环境依赖
 ESP-IDF: v4.4.2-dirty

@@ -4,7 +4,8 @@
  * @Description: 
 -->
 ### 介绍
-Andas 设备项目工程
+
+Andas 设备智能服务化。
 
 ### 文档
 
@@ -23,6 +24,7 @@ server:
 
 device:
 + esp32-cam
+![ESP32-CAM](./device/esp32-cam/doc/ESP32-CAM.png)  
   
 ### 构建
 
@@ -36,7 +38,7 @@ device:
 2.设备连接
 ![](.assets/2022-10-04-23-06-41.png)
 
-3.应用端查看
+3.Web应用端查看
 查看地址如下，因为服务的索引不一样，还在修改中 
 gona: http://127.0.0.1:8080/camera/client
 juli: http://127.0.0.1:8080/camera/client.html
