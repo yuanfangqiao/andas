@@ -22,7 +22,7 @@ server:
 + gona: Go server
 
 device:
-+ esp-cam
++ esp32-cam
   
 ### 构建
 
