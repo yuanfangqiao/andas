@@ -45,8 +45,11 @@ Please check subdirectory.
 ![](.assets/2022-10-04-23-06-41.png)
 
 3.Web application page
+
 Web page url below.
-gona: http://127.0.0.1:8080/camera/client
-juli: http://127.0.0.1:8080/camera/client.html
+
+gona:http://127.0.0.1:8080/camera/client
+
+juli:http://127.0.0.1:8080/camera/client.html
 
 ![](.assets/2022-10-04-23-10-54.png)
